@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MacArthur Reef Resource Point Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<img class="logo"; src="MacArthurReefLogo.svg" alt="MacArthur Reef logo">
+<h1>MacArthur Reef Resource Point Calculator</h1>
+<p>This calculator is intended to help you plan and execute Resource Allocation for MacArthur Reef. All participants begin Resource Allocation with 100 Resource Points (RP), which they may spend freely on the modules found below. Unspent Species Credits (SC) from the Species Selection stage will automatically be converted to RP.</p>
+<hr>
+<h2>Structure Modules</h2>
+<h3>Habitat Length & Radius</h3>
+<p>Adjust the dimensions of your habitat.<br>
+    The default MacArthur Reef habitat is a 500-kilometer-long, 16-kilometer-radius cylinder.<br>
+    Habitat area is capped at 50,265.48 km², but can be reduced to a minimum of 12,566.37 km². Smaller habitats will be conferred an RP bonus.<br>
+    Sliders will automatically update to respect the maximum possible area.
+</p>
+<div class="module">
+    <label>Habitat Length (km)</label>
+    <input id="lengthSlider" type="range">
+    <span id="lengthDisplay"></span>
+</div>
+
+<div class="module">
+    <label>Habitat Radius (km)</label>
+    <input id="radiusSlider" type="range">
+    <span id="radiusDisplay"></span>
+</div>
+
+<div class="result">
+    Surface Area:
+    <span id="areaDisplay"></span>
+    km²
+</div>
+
+<div class="result">
+    Hoop Stress:
+    <span id="hoopStressDisplay"></span>
+    MPa
+    <label>(Maximum: 2,000 MPa)</label>
+</div>
+
+<h3>Habitat Wall Thickness</h3>
+<p>Adjust the thickness of your habitat's walls.<br>
+    Thicker habitat walls can confer greater strength and can support deeper water depths and taller artificial mountain peaks, though larger habitat radii reduce this.
+</p>
+<div class="module">
+    <label>Wall Thickness (m)</label>
+    <input id="thicknessSlider" type="range">
+    <span id="thicknessDisplay"></span>
+</div>
+
+<h3>Water Depth</h3>
+<p>
+    Adjust the maximum depth of oceans and lakes.
+</p>
+
+<div class="module">
+    <label>Water Depth (m)</label>
+    <input id="waterDepthSlider" type="range">
+    <span id="waterDepthDisplay"></span>
+</div>
+
+<h3>Soil Depth</h3>
+<p>
+    Adjust the depth of soil available for terrestrial ecosystems.
+</p>
+
+<div class="module">
+    <label>Soil Depth (m)</label>
+    <input id="soilDepthSlider" type="range">
+    <span id="soilDepthDisplay"></span>
+</div>
+
+<div class="result">
+    Total Hoop Stress:
+    <span id="totalStressDisplay"></span>
+    MPa
+</div>
+<div id="warningMessage"></div>
+
+<script src="classes.js"></script>
+<script src="constants.js"></script>
+<script src="utilities.js"></script>
+<script src="modules.js"></script>
+<script src="events.js"></script>
+<script src="constraints.js"></script>
+<script src="calculations.js"></script>
+<script src="update.js"></script>
+<script src="main.js"></script>
+
+</body>
+</html>

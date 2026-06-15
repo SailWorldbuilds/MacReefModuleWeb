@@ -1,0 +1,55 @@
+.logo {
+    display: block;
+    width: 300px;
+    height: auto;
+    margin: 0 auto;
+}
+
+h1 {text-align: center;
+    font-size: 2rem;
+}
+
+h2 {text-align: center;
+    font-size: 1.5rem;
+}
+
+h3 {
+    font-size: 1.0rem;
+}
+
+p {
+    margin-bottom: 0.5rem;
+    color: #666;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+}
+
+.category {
+    border: 1px solid #ccc;
+    padding: 20px;
+}
+
+.module {
+    margin-bottom: 20px;
+}
+
+input {
+    margin-left: 10px;
+    width: 100px;
+}
+
+.results {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+#warningMessage {
+    color: red;
+    margin-top: 1rem;
+    font-weight: bold;
+}
