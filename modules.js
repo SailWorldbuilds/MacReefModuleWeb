@@ -80,9 +80,9 @@ const waterDepthModule = new Module(
     ]
 );
 
-const soilDepthModule = new Module(
-    "soilDepth",
-    "Soil Depth",
+const substrateDepthModule = new Module(
+    "substrateDepth",
+    "Substrate Depth",
     "m",
     1,
     [
@@ -108,7 +108,7 @@ const modules = [
     radiusModule,
     thicknessModule,
     waterDepthModule,
-    soilDepthModule,
+    substrateDepthModule,
 ];
 
 // Results
@@ -131,10 +131,10 @@ const waterPressureResult =
         "MPa"
     );
 
-const soilPressureResult =
+const substratePressureResult =
     new Result(
-        "soilPressure",
-        "Soil Pressure",
+        "substratePressure",
+        "Substrate Pressure",
         "MPa"
     );
 
@@ -159,12 +159,27 @@ const totalStressResult =
         "MPa"
     );
 
+const surfaceGravityResult =
+    new Result(
+        "surfaceGravity",
+        "Surface Gravity",
+        "g"
+    );
+
+const trueAreaResult = new Result(
+    "trueArea",
+    "Actual Surface Area",
+    "km²"
+    );
+
 const results = [
     areaResult,
     hoopStressResult,
     waterPressureResult,
-    soilPressureResult,
+    substratePressureResult,
     airPressureResult,
     airDepthResult,
-    totalStressResult
+    totalStressResult,
+    trueAreaResult,
+    surfaceGravityResult
 ];

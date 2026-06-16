@@ -25,11 +25,11 @@ function calculateWaterPressure() {
 
 }
 
-function calculateSoilPressure() {
+function calculateSubstratePressure() {
 
     return (
-        SOIL_DENSITY *
-        soilDepthModule.value *
+        SUBSTRATE_DENSITY *
+        substrateDepthModule.value *
         GRAVITY *
         radiusModule.value *
         1000
@@ -46,7 +46,7 @@ function calculateAirDepth() {
         -
         waterDepthModule.value
         -
-        soilDepthModule.value
+        substrateDepthModule.value
     );
 
 }
@@ -75,9 +75,57 @@ function calculateTotalStress() {
         +
         calculateWaterPressure()
         +
-        calculateSoilPressure()
+        calculateSubstratePressure()
         +
         calculateAirPressure()
+    );
+
+}
+
+function calculateSurfaceRadius() {
+
+    return (
+        radiusModule.value * 1000
+        -
+        thicknessModule.value
+        -
+        waterDepthModule.value
+        -
+        substrateDepthModule.value
+    );
+
+}
+
+function calculateTrueArea() {
+
+    return (
+        2 *
+        Math.PI *
+        (
+            calculateSurfaceRadius() / 1000
+        ) *
+        lengthModule.value
+    );
+
+}
+
+function calculateSurfaceGravity() {
+
+    return (
+        GRAVITY *
+        calculateSurfaceRadius()
+        /
+        (radiusModule.value * 1000)
+    );
+
+}
+
+function calculateSurfaceGravityG() {
+
+    return (
+        calculateSurfaceGravity()
+        /
+        GRAVITY
     );
 
 }

@@ -7,9 +7,68 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+<div class="floatingPanel">
+    <h3>Current Configuration</h3>
+
+    <div>
+        <b>Code:</b>
+        <span
+            id="configurationCode"
+            onclick="copyConfiguration()"
+        ></span>
+    </div>
+
+    <hr>
+
+    <h3>Structure Outputs</h3>
+
+    <div class="panelOutput">
+        <b>Actual Surface Area:</b>
+        <span id="trueAreaDisplay"></span>
+        km²
+    </div>
+
+    <div class="panelOutput">
+        <b>Gravity at Sea Level:</b>
+        <span id="surfaceGravityDisplay"></span>
+        g
+    </div>
+
+    <div class="panelOutput">
+        <b>Total Hoop Stress:</b>
+        <span id="totalStressDisplay"></span>
+        MPa
+    </div>
+
+    <div id="warningMessage"></div>
+</div>
+
 <img class="logo"; src="MacArthurReefLogo.svg" alt="MacArthur Reef logo">
 <h1>MacArthur Reef Resource Point Calculator</h1>
 <p>This calculator is intended to help you plan and execute Resource Allocation for MacArthur Reef. All participants begin Resource Allocation with 100 Resource Points (RP), which they may spend freely on the modules found below. Unspent Species Credits (SC) from the Species Selection stage will automatically be converted to RP.</p>
+
+<hr>
+
+<h2>Habitat Configuration Import</h2>
+
+<p>If you have an existing habitat code, please paste it here.</p>
+
+<div class="configImport">
+
+    <input
+        type="text"
+        id="configInput"
+        maxlength="24"
+        placeholder="MR2..."
+    >
+
+    <button onclick="loadConfiguration()">
+        Load Configuration
+    </button>
+
+</div>
+
 <hr>
 <h2>Structure Modules</h2>
 <h3>Habitat Length & Radius</h3>
@@ -64,23 +123,16 @@
     <span id="waterDepthDisplay"></span>
 </div>
 
-<h3>Soil Depth</h3>
+<h3>Substrate Depth</h3>
 <p>
-    Adjust the depth of soil available for terrestrial ecosystems.
+    Adjust the depth of soil available for terrestrial ecosystems and sediment for aquatic ecosystems.
 </p>
 
 <div class="module">
-    <label>Soil Depth (m)</label>
-    <input id="soilDepthSlider" type="range">
-    <span id="soilDepthDisplay"></span>
+    <label>Substrate Depth (m)</label>
+    <input id="substrateDepthSlider" type="range">
+    <span id="substrateDepthDisplay"></span>
 </div>
-
-<div class="result">
-    Total Hoop Stress:
-    <span id="totalStressDisplay"></span>
-    MPa
-</div>
-<div id="warningMessage"></div>
 
 <script src="classes.js"></script>
 <script src="constants.js"></script>
@@ -90,6 +142,8 @@
 <script src="constraints.js"></script>
 <script src="calculations.js"></script>
 <script src="update.js"></script>
+<script src="import.js"></script>
+<script src="export.js"></script>
 <script src="main.js"></script>
 
 </body>

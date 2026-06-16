@@ -75,15 +75,17 @@ function constrainStress(changedModule) {
         changedModule === thicknessModule
     ) {
 
-        warningMessage.textContent =
-            "Hoop Stress cannot exceed 2,000 MPa. Thinner habitat wall thickness increases hoop stress.";
+        warningMessage.innerHTML =
+            "Hoop Stress cannot exceed 2,000 MPa.<br>" + 
+            "Thinner habitat wall thickness increases hoop stress.";
 
     }
 
     else {
 
-        warningMessage.textContent =
-            "Hoop Stress cannot exceed 2,000 MPa: Larger habitat radius, deeper soil, and deeper water increase hoop stress.";
+        warningMessage.innerHTML =
+            "Hoop Stress cannot exceed 2,000 MPa.<br>" +
+            "Larger habitat radius, deeper substrate, and deeper water increase hoop stress.";
 
     }
 

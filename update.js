@@ -4,8 +4,12 @@ function updateEverything(changedModule = null) {
     updateArea();
     updateHoopStress();
     updateWaterPressure();
-    updateSoilPressure();
+    updateSubstratePressure();
     updateAirDepth();
     updateAirPressure();
     updateTotalStress();
+    updateTrueArea();
+    updateSurfaceGravity();
+
+    updateConfigurationCode();
 }

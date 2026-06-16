@@ -1,3 +1,39 @@
+.floatingPanel {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 300px;
+    padding: 15px;
+    border: 1px solid #666;
+    border-radius: 10px;
+    background-color: #fff;
+
+}
+
+.panelOutput {
+    font-size: 0.8em;
+}
+
+.configImport {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+#configInput {
+    width: 250px;
+    padding: 6px;
+}
+
+body {
+    line-height: 1.5;
+}
+
+.content {
+    margin-right: 340px;
+}
+
 .logo {
     display: block;
     width: 300px;
@@ -13,12 +49,10 @@ h2 {text-align: center;
     font-size: 1.5rem;
 }
 
-h3 {
-    font-size: 1.0rem;
+h3 {font-size: 1.0rem;
 }
 
 p {
-    margin-bottom: 0.5rem;
     color: #666;
 }
 
@@ -35,7 +69,7 @@ body {
 }
 
 .module {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 input {
@@ -49,7 +83,11 @@ input {
 }
 
 #warningMessage {
+    font-size: 0.8em;
     color: red;
-    margin-top: 1rem;
     font-weight: bold;
+}
+
+#configurationCode {
+    cursor: pointer;
 }

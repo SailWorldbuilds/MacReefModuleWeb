@@ -30,10 +30,10 @@ function updateWaterPressure() {
 
 }
 
-function updateSoilPressure() {
+function updateSubstratePressure() {
 
-    soilPressureResult.setValue(
-        calculateSoilPressure() / 1e6
+    substratePressureResult.setValue(
+        calculateSubstratePressure() / 1e6
     );
 
 }
@@ -58,6 +58,22 @@ function updateTotalStress() {
 
     totalStressResult.setValue(
         calculateTotalStress() / 1e6
+    );
+
+}
+
+function updateSurfaceGravity() {
+
+    surfaceGravityResult.setValue(
+        calculateSurfaceGravityG()
+    );
+
+}
+
+function updateTrueArea() {
+
+    trueAreaResult.setValue(
+        calculateTrueArea()
     );
 
 }
