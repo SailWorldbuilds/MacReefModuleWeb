@@ -7,7 +7,7 @@
     border: 1px solid #666;
     border-radius: 10px;
     background-color: #fff;
-
+    z-index: 1000;
 }
 
 .panelOutput {
@@ -90,4 +90,71 @@ input {
 
 #configurationCode {
     cursor: pointer;
+}
+
+.rpPositive {
+    color: #2ecc71; /* green */
+    font-weight: 700;
+}
+
+.rpNegative {
+    color: #e74c3c; /* red */
+    font-weight: 700;
+}
+
+.module {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.module input[type="range"] {
+    flex: 1;
+}
+
+.module span {
+    width: 90px;
+    white-space: nowrap;
+}
+
+.module .rpCost {
+    margin-left: auto;
+    text-align: right;
+}
+
+.result .rpCost {
+    margin-left: auto;
+    text-align: right;
+}
+
+.result {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+#habitatPreviewContainer {
+    width: 100%;
+    height: 210px;
+    margin: 20px 0;
+    border: 1px solid #ccc;
+    position: relative;
+    background: #fafafa;
+    overflow: hidden;
+}
+
+#habitatPreview {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(52, 152, 219, 0.4);
+    border: 2px solid #2980b9;
+}
+
+#circumferenceLabel,
+#lengthLabel {
+    position: absolute;
+    color: black;
+    font-size: 0.9em;
 }

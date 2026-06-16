@@ -130,6 +130,28 @@ function calculateSurfaceGravityG() {
 
 }
 
+// Resource Points
+function calculateAreaRP() {
+
+    const area = areaResult.value;
+
+    if (area <= 15000) return 15;
+    if (area <= 30000) return 10;
+    if (area <= 45000) return 5;
+
+    return 0;
+}
+
+function calculateTotalRP() {
+
+    const moduleRP =
+        modules.reduce((sum, m) => {
+            return sum + m.getRP();
+        }, 0);
+
+    return moduleRP + calculateAreaRP();
+}
+
 // Formatting
 function formatNumber(
     value,

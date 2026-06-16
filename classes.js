@@ -3,11 +3,13 @@
 class Module {
 
     constructor(
-        id,
-        name,
-        unit,
-        value,
-        values
+    id,
+    name,
+    unit,
+    value,
+    values,
+    rpCosts = null,
+    defaultValue = value
     ) {
 
         this.id = id;
@@ -18,11 +20,15 @@ class Module {
         this.previousValue = value;
         this.values = values;
 
+        this.rpCosts = rpCosts;
+    this.defaultValue = defaultValue;
+
         this.min = values[0];
         this.max = values[values.length - 1];
 
         this.slider = null;
         this.display = null;
+        this.rpDisplay = null;
     }
 
     setValue(value, update = true) {
@@ -46,9 +52,39 @@ class Module {
                 `${formatNumber(value)} ${this.unit}`;
         }
 
+        if (this.rpDisplay && this.rpCosts) {
+
+            const rp = this.getRP();
+
+            const abs = Math.abs(rp);
+
+            let sign = "";
+            let color = "";
+
+            if (rp < 0) {
+                sign = "-";
+                color = "rpNegative";
+            }
+
+            else if (rp > 0) {
+                sign = "+";
+                color = "rpPositive";
+            }
+
+            this.rpDisplay.innerHTML =
+                `<span class="${color}">
+                    ${sign}${abs} RP
+                </span>`;
+        }
+
         if (update) {
             updateEverything(this);
         }
+    }
+ 
+    getRP() {
+        const index = this.values.indexOf(this.value);
+        return this.rpCosts?.[index] ?? 0;
     }
 }
 
@@ -75,8 +111,19 @@ class Result {
 
         if (this.display) {
 
-            this.display.textContent =
-                formatNumber(value, 2);
+            if (this.unit === "RP") {
+
+                this.display.textContent =
+                    Math.round(-value);
+
+            }
+
+            else {
+
+                this.display.textContent =
+                    formatNumber(value, 2);
+
+            }
 
         }
 

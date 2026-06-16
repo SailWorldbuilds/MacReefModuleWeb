@@ -24,7 +24,7 @@
     <h3>Structure Outputs</h3>
 
     <div class="panelOutput">
-        <b>Actual Surface Area:</b>
+        <b>Surface Area at Sea Level:</b>
         <span id="trueAreaDisplay"></span>
         km²
     </div>
@@ -42,11 +42,18 @@
     </div>
 
     <div id="warningMessage"></div>
+
+    <hr>
+
+    <div class="panelOutput">
+    <b>RP Spent:</b>
+    <span id="rpDisplay"></span>
+    </div>
 </div>
 
 <img class="logo"; src="MacArthurReefLogo.svg" alt="MacArthur Reef logo">
 <h1>MacArthur Reef Resource Point Calculator</h1>
-<p>This calculator is intended to help you plan and execute Resource Allocation for MacArthur Reef. All participants begin Resource Allocation with 100 Resource Points (RP), which they may spend freely on the modules found below. Unspent Species Credits (SC) from the Species Selection stage will automatically be converted to RP.</p>
+<p>This calculator is intended to help you plan and execute Resource Allocation for MacArthur Reef. All habitats begin Resource Allocation with 100 Resource Points (RP), which their teams may spend freely on the modules found below. Unspent Species Credits (SC) from the Species Selection stage will automatically be converted to RP. You are responsible for ensuring your RP expenditure does not exceed your combined 100 RP and leftover SC.</p>
 
 <hr>
 
@@ -93,13 +100,14 @@
     Surface Area:
     <span id="areaDisplay"></span>
     km²
+    <span id="areaRPCost"></span>
 </div>
 
-<div class="result">
-    Hoop Stress:
-    <span id="hoopStressDisplay"></span>
-    MPa
-    <label>(Maximum: 2,000 MPa)</label>
+<h3>Visualization of Habitat Dimensions</h3>
+<div id="habitatPreviewContainer">
+    <div id="habitatPreview"></div>
+    <div id="circumferenceLabel"></div>
+    <div id="lengthLabel"></div>
 </div>
 
 <h3>Habitat Wall Thickness</h3>
@@ -110,6 +118,7 @@
     <label>Wall Thickness (m)</label>
     <input id="thicknessSlider" type="range">
     <span id="thicknessDisplay"></span>
+    <span id="thicknessRPCost"></span>
 </div>
 
 <h3>Water Depth</h3>
@@ -121,17 +130,43 @@
     <label>Water Depth (m)</label>
     <input id="waterDepthSlider" type="range">
     <span id="waterDepthDisplay"></span>
+    <span id="waterDepthRPCost"></span>
 </div>
 
 <h3>Substrate Depth</h3>
 <p>
-    Adjust the depth of soil available for terrestrial ecosystems and sediment for aquatic ecosystems.
+    Adjust the maximum depth of substrate available for terrestrial ecosystems and sediment for aquatic ecosystems.
 </p>
 
 <div class="module">
     <label>Substrate Depth (m)</label>
     <input id="substrateDepthSlider" type="range">
     <span id="substrateDepthDisplay"></span>
+    <span id="substrateDepthRPCost"></span>
+</div>
+
+<h3>Elevation</h3>
+<p>
+    Adjust the maximum elevation of terrain above sea level.
+</p>
+
+<div class="module">
+    <label>Elevation (m)</label>
+    <input id="elevationSlider" type="range">
+    <span id="elevationDisplay"></span>
+    <span id="elevationRPCost"></span>
+</div>
+
+<h3>Habitat Stability</h3>
+<p>
+    Cheaper fabrication confers more Resource Points but decreases Habitat Instability.
+</p>
+
+<div class="module">
+    <label>Habitat Stability</label>
+    <input id="stabilitySlider" type="range">
+    <span id="stabilityDisplay"></span>
+    <span id="stabilityRPCost"></span>
 </div>
 
 <script src="classes.js"></script>
