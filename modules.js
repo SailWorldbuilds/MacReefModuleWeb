@@ -4,13 +4,7 @@ const lengthModule = new Module(
     "Habitat Length",
     "km",
     500,
-    [
-        250,
-        400,
-        500,
-        800,
-        1000
-    ]
+    [250,400,500,800,1000]
 );
 
 const radiusModule = new Module(
@@ -18,13 +12,7 @@ const radiusModule = new Module(
     "Habitat Radius",
     "km",
     16,
-    [
-        8,
-        10,
-        16,
-        20,
-        32
-    ]
+    [8,10,16,20,32]
 );
 
 const thicknessModule = new Module(
@@ -32,30 +20,8 @@ const thicknessModule = new Module(
     "Wall Thickness",
     "m",
     50,
-    [
-        10,     // +20
-        20,     // +15
-        30,     // +10
-        40,     // +5
-        50,     // 0
-        100,    // -5
-        150,    // -10
-        200,    // -15
-        250,    // -20
-        300     // -25
-    ],
-    [
-        20,     // 10 meters
-        15,     // 20 meters
-        10,     // 30 meters
-        5,      // 40 meters
-        0,      // 50 meters (default)
-        -5,     // 100 meters
-        -10,    // 150 meters
-        -15,    // 200 meters
-        -20,    // 250 meters
-        -25     // 300 meters
-    ],
+    [10,20,30,40,50,100,150,200,250,300],
+    [20,15,10,5,0,-5,-10,-15,-20,-25],
     50
 );
 
@@ -64,34 +30,8 @@ const waterDepthModule = new Module(
     "Water Depth",
     "m",
     10,
-    [
-        1,      // +8
-        2,      // +4
-        5,      // +2
-        10,     // 0
-        25,     // -2
-        50,     // -4
-        100,    // -6
-        250,    // -8
-        500,    // -10
-        1000,   // -12
-        2000,   // -16
-        3000    // -20
-    ],
-    [
-        8,      // 1 meter
-        4,      // 2 meters
-        2,      // 5 meters
-        0,      // 10 meters (default)
-        -2,     // 25 meters
-        -4,     // 50 meters
-        -6,     // 100 meters
-        -8,     // 250 meters
-        -10,    // 500 meters
-        -12,    // 1000 meters
-        -16,    // 2000 meters
-        -20     // 3000 meters
-    ],
+    [1,2,5,10,25,50,100,250,500,1000,2000,3000],
+    [8,4,2,0,-2,-4,-6,-8,-10,-12,-16,-20],
     10
 );
 
@@ -100,32 +40,8 @@ const substrateDepthModule = new Module(
     "Substrate Depth",
     "m",
     1,
-    [
-        0,      // +8
-        0.25,   // +4
-        0.5,    // +2
-        1,      // 0
-        2,      // -2
-        3,      // -4
-        5,      // -6
-        10,     // -8
-        25,     // -10
-        50,     // -12
-        100     // -15
-    ],
-    [
-        8,      // 0 meters
-        4,      // 0.25 meters
-        2,      // 0.5 meters
-        0,      // 1 meter (default)
-        -2,     // 2 meters
-        -4,     // 3 meters
-        -6,     // 5 meters
-        -8,     // 10 meters
-        -10,    // 25 meters
-        -12,    // 50 meters
-        -15,    // 100 meters
-    ],
+    [0,0.25,0.5,1,2,3,5,10,25,50,100],
+    [8,4,2,0,-2,-4,-6,-8,-10,-12,-15],
     1
 );
 
@@ -134,34 +50,8 @@ const elevationModule = new Module(
     "Elevation",
     "m",
     10,
-    [
-        1,      // +8
-        2,      // +4
-        5,      // +2
-        10,     // 0
-        25,     // -2
-        50,     // -4
-        100,    // -6
-        250,    // -8
-        500,    // -10
-        1000,   // -12
-        2000,   // -16
-        3000    // -20
-    ],
-    [
-        8,      // 1 meter
-        4,      // 2 meters
-        2,      // 5 meters
-        0,      // 10 meters (default)
-        -2,     // 25 meters
-        -4,     // 50 meters
-        -6,     // 100 meters
-        -8,     // 250 meters
-        -10,    // 500 meters
-        -12,    // 1000 meters
-        -16,    // 2000 meters
-        -20     // 3000 meters
-    ],
+    [1,2,5,10,25,50,100,250,500,1000,2000,3000],
+    [8,4,2,0,-2,-4,-6,-8,-10,-12,-16,-20],
     10
 );
 

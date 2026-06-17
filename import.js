@@ -1,7 +1,6 @@
 function importConfiguration(code) {
 
-    code =
-        code.trim();
+    code = code.trim();
 
     if (
         !code.startsWith(
@@ -13,36 +12,63 @@ function importConfiguration(code) {
 
     }
 
-    const indices =
-        JSON.parse(
+    const bytes =
+        Uint8Array.from(
             atob(
                 code.slice(4)
-            )
+            ),
+            c => c.charCodeAt(0)
         );
 
-    modules.forEach(
-        (module, i) => {
+    let packed = 0n;
 
-            const index =
-                indices[i];
+    for (
+        let i = bytes.length - 1;
+        i >= 0;
+        i--
+    ) {
 
-            if (
-                Number.isInteger(index)
-                &&
-                index >= 0
-                &&
-                index < module.values.length
-            ) {
+        packed <<= 8n;
+        packed |= BigInt(
+            bytes[i]
+        );
 
-                module.setValue(
-                    module.values[index],
-                    false
-                );
+    }
 
-            }
+    for (const module of modules) {
+
+        const bits =
+            bitsNeeded(
+                module
+            );
+
+        const mask =
+            (1n << BigInt(bits))
+            - 1n;
+
+        const index =
+            Number(
+                packed & mask
+            );
+
+        packed >>= BigInt(
+            bits
+        );
+
+        if (
+            index >= 0
+            &&
+            index < module.values.length
+        ) {
+
+            module.setValue(
+                module.values[index],
+                false
+            );
 
         }
-    );
+
+    }
 
     updateEverything();
 

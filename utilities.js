@@ -152,16 +152,24 @@ function calculateTotalRP() {
     return moduleRP + calculateAreaRP();
 }
 
+// Bit Calculation
+function bitsNeeded(module) {
+
+    return Math.ceil(
+        Math.log2(
+            module.values.length
+        )
+    );
+
+}
+
 // Formatting
-function formatNumber(
-    value,
-    decimals = 0
-) {
+function formatNumber(value, decimals = 2) {
 
     return value.toLocaleString(
         undefined,
         {
-            minimumFractionDigits: decimals,
+            minimumFractionDigits: 0,
             maximumFractionDigits: decimals
         }
     );
