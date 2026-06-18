@@ -100,6 +100,14 @@ function updateSubstratePressure() {
 
 }
 
+function updateElevationPressure() {
+
+    elevationPressureResult.setValue(
+        calculateElevationPressure() / 1e6
+    );
+
+}
+
 function updateAirDepth() {
 
     airDepthResult.setValue(
@@ -124,10 +132,18 @@ function updateTotalStress() {
 
 }
 
-function updateSurfaceGravity() {
+function updateSeaLevelGravity() {
 
-    surfaceGravityResult.setValue(
-        calculateSurfaceGravityG()
+    seaLevelGravityResult.setValue(
+        calculateSeaLevelGravityG()
+    );
+
+}
+
+function updateMountainGravity() {
+
+    mountainGravityResult.setValue(
+        calculateMountainGravityG()
     );
 
 }
@@ -136,6 +152,171 @@ function updateTrueArea() {
 
     trueAreaResult.setValue(
         calculateTrueArea()
+    );
+
+}
+
+function updateLayerPreview() {
+
+    layerPreview.innerHTML = "";
+
+    const size = 400;
+    const center = size / 2;
+
+    const minRadius = 8;
+    const maxRadius = 32;
+
+    const minDisplayRadius = 120;
+    const maxDisplayRadius = 200;
+
+    const outerRadius =
+        minDisplayRadius
+        +
+        (
+            radiusModule.value
+            -
+            minRadius
+        )
+        *
+        (
+            maxDisplayRadius
+            -
+            minDisplayRadius
+        )
+        /
+        (
+            maxRadius
+            -
+            minRadius
+        );
+
+    // Actual thicknesses (m)
+    const wallThickness =
+        thicknessModule.value;
+
+    const waterThickness =
+        waterDepthModule.value;
+
+    const elevationThickness =
+        elevationModule.value;
+
+    const substrateThickness =
+        substrateDepthModule.value;
+
+    // Convert to display thicknesses (px)
+    const wallDisplay =
+    Math.max(
+        3,
+        thicknessModule.value * 0.05
+    );
+
+    const waterDisplay =
+        Math.max(
+            4,
+            waterDepthModule.value * 0.01
+        );
+
+    const elevationDisplay =
+        Math.max(
+            4,
+            elevationModule.value * 0.01
+        );
+
+    const substrateDisplay =
+        Math.max(
+            3,
+            substrateDepthModule.value * 0.1
+        );
+
+    // Build radii from outside inward
+    const wallRadius =
+        outerRadius;
+
+    const waterRadius =
+        wallRadius
+        - wallDisplay;
+
+    const elevationRadius =
+        waterRadius
+        - waterDisplay;
+
+    const substrateRadius =
+        elevationRadius
+        - elevationDisplay;
+
+    const airRadius =
+    Math.max(
+        20,
+        outerRadius
+        - wallDisplay
+        - waterDisplay
+        - elevationDisplay
+        - substrateDisplay
+    );
+
+    function drawCircle(radius, color) {
+
+        const circle =
+            document.createElementNS(
+                "http://www.w3.org/2000/svg",
+                "circle"
+            );
+
+        circle.setAttribute(
+            "cx",
+            center
+        );
+
+        circle.setAttribute(
+            "cy",
+            center
+        );
+
+        circle.setAttribute(
+            "r",
+            radius
+        );
+
+        circle.setAttribute(
+            "fill",
+            color
+        );
+
+        layerPreview.appendChild(
+            circle
+        );
+
+    }
+
+    // Largest → smallest
+    drawCircle(
+        wallRadius,
+        "#666666"
+    );
+
+    drawCircle(
+        waterRadius,
+        "#3498db"
+    );
+
+    drawCircle(
+        elevationRadius,
+        "#a67c52"
+    );
+
+    drawCircle(
+        substrateRadius,
+        "#6ab04c"
+    );
+
+    drawCircle(
+        airRadius,
+        "#d6ecff"
+    );
+
+    drawCircle(
+        3,
+        "#ffffff"
     );
 
 }

@@ -31,7 +31,13 @@
 
     <div class="panelOutput">
         <b>Gravity at Sea Level:</b>
-        <span id="surfaceGravityDisplay"></span>
+        <span id="seaLevelGravityDisplay"></span>
+        g
+    </div>
+
+    <div class="panelOutput">
+        <b>Gravity at Highest Elevation:</b>
+        <span id="mountainGravityDisplay"></span>
         g
     </div>
 
@@ -103,10 +109,24 @@
 </div>
 
 <h3>Visualization of Habitat Dimensions</h3>
+<p>
+    This represents the unwrapped lateral surface of a cylinder, i.e. the livable portion of the habitat. These are the dimensions that should be used for mapping. Please be aware that the top and bottom of the rectangle are a lateral seam and connect to each other.
+</p>
 <div id="habitatPreviewContainer">
     <div id="habitatPreview"></div>
     <div id="circumferenceLabel"></div>
     <div id="lengthLabel"></div>
+</div>
+<p>
+    This figure is a way to visualize the relative layering of your habitat. It is not to scale.
+</p> 
+<div id="layerPreviewContainer">
+    <svg
+        id="layerPreview"
+        width="400"
+        height="400"
+    >
+    </svg>
 </div>
 
 <h3>Habitat Wall Thickness</h3>
@@ -120,9 +140,12 @@
     <span id="thicknessRPCost"></span>
 </div>
 
-<h3>Water Depth</h3>
+<h3>Maximum Water Depth</h3>
 <p>
     Adjust the maximum depth of oceans and lakes.
+    <ul>
+        <li>Water depth determines the highest available tier of the Geothermal Terraforming module.</li>
+    </ul>
 </p>
 
 <div class="module">
@@ -132,9 +155,12 @@
     <span id="waterDepthRPCost"></span>
 </div>
 
-<h3>Substrate Depth</h3>
+<h3>Maximum Substrate Depth</h3>
 <p>
     Adjust the maximum depth of substrate available for terrestrial ecosystems and sediment for aquatic ecosystems.
+    <ul>
+        <li>Substrate depth determines the highest available tier of the Subterranean Terraforming module.</li>
+    </ul>
 </p>
 
 <div class="module">
@@ -144,9 +170,12 @@
     <span id="substrateDepthRPCost"></span>
 </div>
 
-<h3>Elevation</h3>
+<h3>Maximum Elevation</h3>
 <p>
-    Adjust the maximum elevation of terrain above sea level.
+    Adjust the maximum elevation of terrain above sea level. This raises the sintered stone bedrock to increase average land height for the creation of prominent mountains, deep valleys, and rugged terrain.
+    <ul>
+        <li>Elevation determines the highest available tier of the Hydrological Terraforming module.</li>
+    </ul>
 </p>
 
 <div class="module">
@@ -158,7 +187,12 @@
 
 <h3>Habitat Stability</h3>
 <p>
-    Cheaper fabrication confers more Resource Points but decreases Habitat Instability.
+    Return resources in exchange for a chance of catastrophic structural failure.
+    <ul>
+        <li>Habitats that end this phase with 100% Habitat Stability are guaranteed to survive.</li>
+        <li>Habitats that end this phase with 0% Habitat Stability will automatically be destroyed.</li>
+        <li>Habitats that end this phase with 95% Habitat Stability or less will have their survival determined by probabilistic means.</li>
+    </ul>
 </p>
 
 <div class="module">
@@ -167,6 +201,51 @@
     <span id="stabilityDisplay"></span>
     <span id="stabilityRPCost"></span>
 </div>
+
+<hr>
+
+<h2>Terrain Modules</h2>
+
+<h3>Land-Water Balance</h3>
+<p>
+    Increase or decrease the proportional amount of water in the habitat area. 
+    <ul>
+        <li>0% completely removes permanent surface water from the entire habitat area. Surface water is only available after rainfall in ephemeral pools.</li>
+        <li>100% completely inundates the entire habitat area. The complete absence of land is akin to an open ocean or a large lake.</li>
+    </ul>
+</p>
+<div class="module">
+    <label>Percent Water Coverage</label>
+    <input id="waterBalanceSlider" type="range">
+    <span id="waterBalanceDisplay"></span>
+    <span id="waterBalanceRPCost"></span>
+</div>
+
+<h3>Geothermal Terraforming</h3>
+
+<h3>Hydrological Terraforming</h3>
+
+<h3>Subterranean Terraforming</h3>
+
+<h3>Maximum Substrate Fertility</h3>
+
+<h3>Maximum Substrate pH</h3>
+
+<h3>Maximum Substrate Aeration</h3>
+
+<hr>
+
+<h2>Water Modules</h2>
+
+<h3>Water Turbidity</h3>
+
+<h3>Water Heating/Cooling</h3>
+
+<h3>Minimum Salinity</h3>
+
+<h3>Tides</h3>
+
+<hr>
 
 <script src="classes.js"></script>
 <script src="constants.js"></script>

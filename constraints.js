@@ -85,7 +85,7 @@ function constrainStress(changedModule) {
 
         warningMessage.innerHTML =
             "Hoop Stress cannot exceed 2,000 MPa.<br>" +
-            "Larger habitat radius, deeper substrate, and deeper water increase hoop stress.";
+            "Larger habitat radius, deeper substrate, deeper water, and higher elevation increase hoop stress.";
 
     }
 

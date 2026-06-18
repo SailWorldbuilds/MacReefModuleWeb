@@ -51,18 +51,28 @@ const elevationModule = new Module(
     "m",
     10,
     [1,2,5,10,25,50,100,250,500,1000,2000,3000],
-    [8,4,2,0,-2,-4,-6,-8,-10,-12,-16,-20],
+    [8,4,2,0,-1,-2,-3,-4,-5,-6,-8,-10],
     10
 );
 
 const stabilityModule = new Module(
     "stability",
-    "stability",
+    "Stability",
     "%",
     100,
     [0,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100],
     [100,95,90,85,80,75,70,65,60,55,50,45,40,35,30,25,20,15,10,5,0],
     100
+);
+
+const waterBalanceModule = new Module(
+    "waterBalance",
+    "Water Balance",
+    "%",
+    50,
+    [0,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100],
+    [20,18,16,14,12,10,8,6,4,2,0,-2,-4,-6,-8,-10,-12,-14,-16,-18,-20],
+    50
 );
 
 const modules = [
@@ -72,7 +82,8 @@ const modules = [
     waterDepthModule,
     substrateDepthModule,
     elevationModule,
-    stabilityModule
+    stabilityModule,
+    waterBalanceModule
 ];
 
 // Results
@@ -102,6 +113,13 @@ const substratePressureResult =
         "MPa"
     );
 
+const elevationPressureResult =
+    new Result(
+        "elevationPressure",
+        "Elevation Pressure",
+        "MPa"
+    );
+
 const airDepthResult =
     new Result(
         "airDepth",
@@ -123,10 +141,17 @@ const totalStressResult =
         "MPa"
     );
 
-const surfaceGravityResult =
+const seaLevelGravityResult =
     new Result(
-        "surfaceGravity",
-        "Surface Gravity",
+        "seaLevelGravity",
+        "Sea Level Gravity",
+        "g"
+    );
+
+const mountainGravityResult =
+    new Result(
+        "mountainGravity",
+        "Highest Elevation Gravity",
         "g"
     );
 
@@ -147,10 +172,12 @@ const results = [
     hoopStressResult,
     waterPressureResult,
     substratePressureResult,
+    elevationPressureResult,
     airPressureResult,
     airDepthResult,
     totalStressResult,
     trueAreaResult,
-    surfaceGravityResult,
+    seaLevelGravityResult,
+    mountainGravityResult,
     rpResult
 ];

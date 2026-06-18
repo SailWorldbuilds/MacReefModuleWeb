@@ -6,11 +6,14 @@ function updateEverything(changedModule = null) {
     updateHoopStress();
     updateWaterPressure();
     updateSubstratePressure();
+    updateElevationPressure();
     updateAirDepth();
     updateAirPressure();
     updateTotalStress();
     updateTrueArea();
-    updateSurfaceGravity();
+    updateSeaLevelGravity();
+    updateMountainGravity();
+    updateLayerPreview();
     updateRP();
     updateConfigurationCode();
 }

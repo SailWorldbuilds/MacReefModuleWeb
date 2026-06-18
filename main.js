@@ -68,6 +68,11 @@ const lengthLabel =
         "lengthLabel"
     );
 
+const layerPreview =
+    document.getElementById(
+        "layerPreview"
+    );
+
 const warningMessage =
     document.getElementById(
         "warningMessage"

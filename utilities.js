@@ -11,38 +11,108 @@ function calculateHoopStress(radius) {
     );
 }
 
-function calculateWaterPressure() {
+function calculateGravityAt(radiusFromAxis) {
+    const R = radiusModule.value * 1000;
+    return GRAVITY * (radiusFromAxis / R);
+}
+
+function calculateWaterCentroidRadius() {
 
     return (
-        WATER_DENSITY *
-        waterDepthModule.value *
-        GRAVITY *
-        radiusModule.value *
-        1000
-        /
+        radiusModule.value * 1000
+        -
         thicknessModule.value
+        -
+        waterDepthModule.value / 2
+    );
+
+}
+
+function calculateElevationCentroidRadius() {
+
+    return (
+        radiusModule.value * 1000
+        -
+        thicknessModule.value
+        -
+        waterDepthModule.value
+        -
+        elevationModule.value / 2
+    );
+
+}
+
+function calculateSubstrateCentroidRadius() {
+
+    return (
+        radiusModule.value * 1000
+        -
+        thicknessModule.value
+        -
+        waterDepthModule.value
+        -
+        substrateDepthModule.value / 2
+    );
+
+}
+
+function calculateAirCentroidRadius() {
+
+    return (
+        calculateAirDepth() / 2
+    );
+
+}
+
+function calculateWaterPressure() {
+    return WATER_DENSITY *
+           waterDepthModule.value *
+           calculateGravityAt(
+               calculateWaterCentroidRadius()
+           );
+}
+
+function calculateShellThickness() {
+
+    return (
+        SUBSTRATE_DENSITY *
+        substrateDepthModule.value *
+        calculateGravityAt(
+            calculateElevationCentroidRadius()
+        ) *
+        elevationModule.value
+        /
+        2e9
+    );
+
+}
+
+function calculateElevationPressure() {
+
+    return (
+        MATERIAL_DENSITY *
+        calculateShellThickness() *
+        calculateGravityAt(
+            calculateElevationCentroidRadius()
+        )
     );
 
 }
 
 function calculateSubstratePressure() {
-
-    return (
-        SUBSTRATE_DENSITY *
-        substrateDepthModule.value *
-        GRAVITY *
-        radiusModule.value *
-        1000
-        /
-        thicknessModule.value
-    );
-
+    return SUBSTRATE_DENSITY *
+           substrateDepthModule.value *
+           calculateGravityAt(
+               calculateSubstrateCentroidRadius()
+           );
 }
 
 function calculateAirDepth() {
 
     return (
         radiusModule.value * 1000
+        -
+        thicknessModule.value
         -
         waterDepthModule.value
         -
@@ -52,34 +122,26 @@ function calculateAirDepth() {
 }
 
 function calculateAirPressure() {
-
-    return (
-        AIR_DENSITY *
-        calculateAirDepth()
-        *
-        GRAVITY *
-        radiusModule.value
-        * 1000
-        /
-        thicknessModule.value
-    );
-
+    return AIR_DENSITY *
+           calculateAirDepth() *
+           calculateGravityAt(
+               calculateAirCentroidRadius()
+           );
 }
 
 function calculateTotalStress() {
 
-    return (
-        calculateHoopStress(
-            radiusModule.value
-        )
-        +
-        calculateWaterPressure()
-        +
-        calculateSubstratePressure()
-        +
-        calculateAirPressure()
-    );
+    const R = radiusModule.value * 1000;
+    const t = thicknessModule.value;
 
+    const externalPressure =
+        calculateWaterPressure() +
+        calculateSubstratePressure() +
+        calculateElevationPressure() +
+        calculateAirPressure();
+
+    return calculateHoopStress(radiusModule.value)
+         + externalPressure * (R / t);
 }
 
 function calculateSurfaceRadius() {
@@ -109,23 +171,66 @@ function calculateTrueArea() {
 
 }
 
-function calculateSurfaceGravity() {
+function calculateSeaLevelRadius() {
 
     return (
-        GRAVITY *
-        calculateSurfaceRadius()
-        /
-        (radiusModule.value * 1000)
+        radiusModule.value * 1000
+        -
+        thicknessModule.value
+        -
+        waterDepthModule.value
+        -
+        substrateDepthModule.value
     );
 
 }
 
-function calculateSurfaceGravityG() {
+function calculateSeaLevelGravity() {
+
+    return calculateGravityAt(
+        calculateSeaLevelRadius()
+    );
+
+}
+
+function calculateSeaLevelGravityG() {
 
     return (
-        calculateSurfaceGravity()
-        /
-        GRAVITY
+        calculateSeaLevelGravity()
+        / GRAVITY
+    );
+
+}
+
+function calculateMountainRadius() {
+
+    return (
+        radiusModule.value * 1000
+        -
+        thicknessModule.value
+        -
+        waterDepthModule.value
+        -
+        elevationModule.value
+        -
+        substrateDepthModule.value
+    );
+
+}
+
+function calculateMountainGravity() {
+
+    return calculateGravityAt(
+        calculateMountainRadius()
+    );
+
+}
+
+function calculateMountainGravityG() {
+
+    return (
+        calculateMountainGravity()
+        / GRAVITY
     );
 
 }
