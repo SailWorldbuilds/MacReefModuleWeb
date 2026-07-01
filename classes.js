@@ -3,39 +3,70 @@
 class Module {
 
     constructor(
-    id,
-    name,
-    unit,
-    value,
-    values,
-    rpCosts = null,
-    defaultValue = value
+        id,
+        name,
+        unit,
+        type,
+        states,
+        defaultValue = null
     ) {
 
         this.id = id;
         this.name = name;
         this.unit = unit;
 
-        this.value = value;
-        this.previousValue = value;
-        this.values = values;
+        this.type = type;
 
-        this.rpCosts = rpCosts;
-    this.defaultValue = defaultValue;
+        this.states = states;
 
-        this.min = values[0];
-        this.max = values[values.length - 1];
+        this.value =
+            defaultValue ??
+            states[0].value;
+
+        this.previousValue =
+            this.value;
+
+        this.defaultValue =
+            this.value;
 
         this.slider = null;
         this.display = null;
         this.rpDisplay = null;
+        this.description = null;
+
+        if (type === "slider") {
+
+            this.min =
+                states[0].value;
+
+            this.max =
+                states[
+                    states.length - 1
+                ].value;
+
+        }
+
+    }
+
+    getCurrentState() {
+
+        return this.states.find(
+            state =>
+                state.value === this.value
+        );
+
     }
 
     setValue(value, update = true) {
 
         value = Number(value);
 
-        if (!this.values.includes(value)) {
+        const state =
+            this.states.find(
+                s => s.value === value
+            );
+
+        if (!state) {
             return;
         }
 
@@ -44,17 +75,34 @@ class Module {
 
         if (this.slider) {
             this.slider.value =
-                this.values.indexOf(value);
+                this.states.findIndex(
+                    s => s.value === value
+                );
         }
 
         if (this.display) {
-            this.display.textContent =
-                `${formatNumber(value)} ${this.unit}`;
+
+            if (this.type === "slider") {
+
+                this.display.textContent =
+                    `${formatNumber(
+                        state.value
+                    )} ${this.unit}`;
+
+            }
+
+            else {
+
+                this.display.textContent =
+                    state.label;
+
+            }
+
         }
 
-        if (this.rpDisplay && this.rpCosts) {
+        if (this.rpDisplay) {
 
-            const rp = this.getRP();
+            const rp = state.rp ?? 0;
 
             const abs = Math.abs(rp);
 
@@ -83,8 +131,22 @@ class Module {
     }
  
     getRP() {
-        const index = this.values.indexOf(this.value);
-        return this.rpCosts?.[index] ?? 0;
+        return (
+            this.getCurrentState()
+                ?.rp
+            ?? 0
+        );
+
+    }
+
+    getDescription() {
+
+        return (
+            this.getCurrentState()
+                ?.description
+            ?? ""
+        );
+
     }
 }
 

@@ -235,6 +235,21 @@ function calculateMountainGravityG() {
 
 }
 
+function calculateMaximumDepthVisibility() {
+
+    const lightFraction =
+        lightModule.value / 100;
+
+    return (
+        -Math.log(
+            0.01 / lightFraction
+        )
+        /
+        turbidityModule.value
+    );
+
+}
+
 // Resource Points
 function calculateAreaRP() {
 
@@ -250,11 +265,17 @@ function calculateAreaRP() {
 function calculateTotalRP() {
 
     const moduleRP =
-        modules.reduce((sum, m) => {
-            return sum + m.getRP();
-        }, 0);
+        modules.reduce(
+            (sum, m) => {
+                return sum + m.getRP();
+            },
+            0
+        );
 
-    return moduleRP + calculateAreaRP();
+    return (
+        moduleRP + calculateAreaRP()
+    );
+
 }
 
 // Bit Calculation
@@ -262,7 +283,7 @@ function bitsNeeded(module) {
 
     return Math.ceil(
         Math.log2(
-            module.values.length
+            module.states.length
         )
     );
 

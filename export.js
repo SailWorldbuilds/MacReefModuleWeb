@@ -6,8 +6,9 @@ function exportConfiguration() {
     for (const module of modules) {
 
         const index =
-            module.values.indexOf(
-                module.value
+            module.states.findIndex(
+                state =>
+                    state.value === module.value
             );
 
         packed |=

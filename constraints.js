@@ -20,14 +20,15 @@ function constrainStructure(changedModule) {
             : lengthModule;
 
     let index =
-        adjustedModule.values.indexOf(
-            adjustedModule.value
+        adjustedModule.states.findIndex(
+            state =>
+                state.value === adjustedModule.value
         );
 
     while (index >= 0) {
 
         const candidate =
-            adjustedModule.values[index];
+            adjustedModule.states[index].value;
 
         const product =
             changedModule.value *

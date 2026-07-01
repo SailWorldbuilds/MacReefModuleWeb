@@ -3,25 +3,49 @@ const lengthModule = new Module(
     "length",
     "Habitat Length",
     "km",
-    500,
-    [250,400,500,800,1000]
+    "slider",
+    [
+        { value: 250 },
+        { value: 400 },
+        { value: 500 },
+        { value: 800 },
+        { value: 1000 }
+    ],
+    500
 );
 
 const radiusModule = new Module(
     "radius",
     "Habitat Radius",
     "km",
-    16,
-    [8,10,16,20,32]
+    "slider",
+    [
+        { value: 8 },
+        { value: 10 },
+        { value: 16 },
+        { value: 20 },
+        { value: 32 }
+    ],
+    16
 );
 
 const thicknessModule = new Module(
     "thickness",
     "Wall Thickness",
     "m",
-    50,
-    [10,20,30,40,50,100,150,200,250,300],
-    [20,15,10,5,0,-5,-10,-15,-20,-25],
+    "slider",
+    [
+        { value: 10, rp: 20 },
+        { value: 20, rp: 15 },
+        { value: 30, rp: 10 },
+        { value: 40, rp: 5 },
+        { value: 50, rp: 0 },
+        { value: 100, rp: -5 },
+        { value: 150, rp: -10 },
+        { value: 200, rp: -15 },
+        { value: 250, rp: -20 },
+        { value: 300, rp: -25 }
+    ],
     50
 );
 
@@ -29,9 +53,21 @@ const waterDepthModule = new Module(
     "waterDepth",
     "Water Depth",
     "m",
-    10,
-    [1,2,5,10,25,50,100,250,500,1000,2000,3000],
-    [8,4,2,0,-2,-4,-6,-8,-10,-12,-16,-20],
+    "slider",
+    [
+        { value: 1,    rp: 8 },
+        { value: 2,    rp: 4 },
+        { value: 5,    rp: 2 },
+        { value: 10,   rp: 0 },
+        { value: 25,   rp: -2 },
+        { value: 50,   rp: -4 },
+        { value: 100,  rp: -6 },
+        { value: 250,  rp: -8 },
+        { value: 500,  rp: -10 },
+        { value: 1000, rp: -12 },
+        { value: 2000, rp: -16 },
+        { value: 3000, rp: -20 }
+    ],
     10
 );
 
@@ -39,9 +75,20 @@ const substrateDepthModule = new Module(
     "substrateDepth",
     "Substrate Depth",
     "m",
-    1,
-    [0,0.25,0.5,1,2,3,5,10,25,50,100],
-    [8,4,2,0,-2,-4,-6,-8,-10,-12,-15],
+    "slider",
+    [
+        { value: 0,    rp: 8 },
+        { value: 0.25, rp: 4 },
+        { value: 0.5,  rp: 2 },
+        { value: 1,    rp: 0 },
+        { value: 2,    rp: -2 },
+        { value: 3,    rp: -4 },
+        { value: 5,    rp: -6 },
+        { value: 10,   rp: -8 },
+        { value: 25,   rp: -10 },
+        { value: 50,   rp: -12 },
+        { value: 100,  rp: -15 }
+    ],
     1
 );
 
@@ -49,9 +96,21 @@ const elevationModule = new Module(
     "elevation",
     "Elevation",
     "m",
-    10,
-    [1,2,5,10,25,50,100,250,500,1000,2000,3000],
-    [8,4,2,0,-1,-2,-3,-4,-5,-6,-8,-10],
+    "slider",
+    [
+        { value: 1,    rp: 8 },
+        { value: 2,    rp: 4 },
+        { value: 5,    rp: 2 },
+        { value: 10,   rp: 0 },
+        { value: 25,   rp: -1 },
+        { value: 50,   rp: -2 },
+        { value: 100,  rp: -3 },
+        { value: 250,  rp: -4 },
+        { value: 500,  rp: -5 },
+        { value: 1000, rp: -6 },
+        { value: 2000, rp: -8 },
+        { value: 3000, rp: -10 }
+    ],
     10
 );
 
@@ -59,9 +118,30 @@ const stabilityModule = new Module(
     "stability",
     "Stability",
     "%",
-    100,
-    [0,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100],
-    [100,95,90,85,80,75,70,65,60,55,50,45,40,35,30,25,20,15,10,5,0],
+    "slider",
+    [
+        { value: 0,   rp: 100 },
+        { value: 5,   rp: 95 },
+        { value: 10,  rp: 90 },
+        { value: 15,  rp: 85 },
+        { value: 20,  rp: 80 },
+        { value: 25,  rp: 75 },
+        { value: 30,  rp: 70 },
+        { value: 35,  rp: 65 },
+        { value: 40,  rp: 60 },
+        { value: 45,  rp: 55 },
+        { value: 50,  rp: 50 },
+        { value: 55,  rp: 45 },
+        { value: 60,  rp: 40 },
+        { value: 65,  rp: 35 },
+        { value: 70,  rp: 30 },
+        { value: 75,  rp: 25 },
+        { value: 80,  rp: 20 },
+        { value: 85,  rp: 15 },
+        { value: 90,  rp: 10 },
+        { value: 95,  rp: 5 },
+        { value: 100, rp: 0 }
+    ],
     100
 );
 
@@ -69,9 +149,109 @@ const waterBalanceModule = new Module(
     "waterBalance",
     "Water Balance",
     "%",
-    50,
-    [0,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100],
-    [20,18,16,14,12,10,8,6,4,2,0,-2,-4,-6,-8,-10,-12,-14,-16,-18,-20],
+    "slider",
+    [
+        { value: 0,   rp: 20 },
+        { value: 5,   rp: 18 },
+        { value: 10,  rp: 16 },
+        { value: 15,  rp: 14 },
+        { value: 20,  rp: 12 },
+        { value: 25,  rp: 10 },
+        { value: 30,  rp: 8 },
+        { value: 35,  rp: 6 },
+        { value: 40,  rp: 4 },
+        { value: 45,  rp: 2 },
+        { value: 50,  rp: 0 },
+        { value: 55,  rp: -2 },
+        { value: 60,  rp: -4 },
+        { value: 65,  rp: -6 },
+        { value: 70,  rp: -8 },
+        { value: 75,  rp: -10 },
+        { value: 80,  rp: -12 },
+        { value: 85,  rp: -14 },
+        { value: 90,  rp: -16 },
+        { value: 95,  rp: -18 },
+        { value: 100, rp: -20 }
+    ],
+    50
+);
+
+const turbidityModule = new Module(
+    "turbidity",
+    "Turbidity",
+    "",
+    "slider",
+    [
+        { value: 10,   rp: 0 },
+        { value: 2,    rp: -2 },
+        { value: 0.5,  rp: -4 },
+        { value: 0.1,  rp: -6 },
+        { value: 0.05, rp: -8 },
+        { value: 0.02, rp: -10 }
+    ],
+    10
+);
+
+const caveModule = new Module(
+    "cave",
+    "Subterranean Terraforming",
+    "",
+    "option",
+    [
+        {
+            value: 0,
+            label: "None",
+            rp: 0
+        },
+        {
+            value: 1,
+            label: "Tier I",
+            rp: -5,
+            requirement: () =>
+                substrateDepthModule.value >= 5,
+            requirementText:
+                "requires 5 m substrate"
+        },
+        {
+            value: 2,
+            label: "Tier II",
+            rp: -10,
+            requirement: () =>
+                substrateDepthModule.value >= 25,
+            requirementText:
+                "requires 25 m substrate"
+        },
+        {
+            value: 3,
+            label: "Tier III",
+            rp: -20,
+            requirement: () =>
+                substrateDepthModule.value >= 100,
+            requirementText:
+                "requires 100 m substrate"
+        }
+    ],
+    0
+);
+
+const lightModule = new Module(
+    "light",
+    "Light",
+    "%",
+    "slider",
+    [
+        { value: 5,   rp: 5 },
+        { value: 10,  rp: 4 },
+        { value: 20,  rp: 3 },
+        { value: 30,  rp: 2 },
+        { value: 40,  rp: 1 },
+        { value: 50,  rp: 0 },
+        { value: 60,  rp: -1 },
+        { value: 70,  rp: -2 },
+        { value: 80,  rp: -3 },
+        { value: 90,  rp: -4 },
+        { value: 100, rp: -5 }
+    ],
     50
 );
 
@@ -83,7 +263,10 @@ const modules = [
     substrateDepthModule,
     elevationModule,
     stabilityModule,
-    waterBalanceModule
+    waterBalanceModule,
+    caveModule,
+    turbidityModule,
+    lightModule
 ];
 
 // Results
@@ -161,6 +344,13 @@ const trueAreaResult = new Result(
     "km²"
     );
 
+const visibilityResult =
+    new Result(
+        "visibility",
+        "Maximum Depth Visibility",
+        "m"
+    );
+
 const rpResult = new Result(
     "rp",
     "Resource Points",
@@ -179,5 +369,6 @@ const results = [
     trueAreaResult,
     seaLevelGravityResult,
     mountainGravityResult,
+    visibilityResult,
     rpResult
 ];

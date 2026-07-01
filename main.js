@@ -1,10 +1,5 @@
 function initializeModule(module) {
 
-    module.slider =
-        document.getElementById(
-            `${module.id}Slider`
-        );
-
     module.display =
         document.getElementById(
             `${module.id}Display`
@@ -15,12 +10,124 @@ function initializeModule(module) {
             `${module.id}RPCost`
         );
 
-    module.slider.min = 0;
-    module.slider.max =
-        module.values.length - 1;
+    module.description =
+        document.getElementById(
+            `${module.id}Description`
+        );
 
-    module.slider.step = 1;
+    if (module.type === "option") {
 
+        const container =
+            document.getElementById(
+                `${module.id}Options`
+            );
+
+        if (!container) {
+            return;
+        }
+
+        module.container =
+            container;
+
+        module.radios = [];
+
+        module.states.forEach(
+
+            (
+                state,
+                index
+            ) => {
+
+                const label =
+                    document.createElement(
+                        "label"
+                    );
+
+                const radio =
+                    document.createElement(
+                        "input"
+                    );
+
+                radio.type =
+                    "radio";
+
+                radio.name =
+                    module.id;
+
+                radio.value =
+                    state.value;
+
+                if (
+                    state.value ===
+                    module.value
+                ) {
+
+                    radio.checked =
+                        true;
+
+                }
+
+                radio.addEventListener(
+                    "change",
+                    () =>
+                        module.setValue(
+                            state.value
+                        )
+                );
+
+                label.appendChild(
+                    radio
+                );
+
+                const text =
+                    document.createElement(
+                        "span"
+                    );
+
+                text.textContent =
+                    state.label;
+
+                label.appendChild(
+                    text
+                );
+
+                container.appendChild(
+                    label
+                );
+
+                container.appendChild(
+                    document.createElement(
+                        "br"
+                    )
+                );
+
+                module.radios.push({
+                    radio,
+                    text
+                });
+
+            }
+
+        );
+
+    }
+
+    if (module.type === "slider") {
+
+        module.slider =
+            document.getElementById(
+                `${module.id}Slider`
+            );
+
+        module.slider.min = 0;
+
+        module.slider.max =
+            module.states.length - 1;
+
+        module.slider.step = 1;
+
+    }
+    
     module.setValue(
         module.value,
         false

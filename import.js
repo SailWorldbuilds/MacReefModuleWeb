@@ -58,11 +58,11 @@ function importConfiguration(code) {
         if (
             index >= 0
             &&
-            index < module.values.length
+            index < module.states.length
         ) {
 
             module.setValue(
-                module.values[index],
+                module.states[index].value,
                 false
             );
 

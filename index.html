@@ -11,6 +11,8 @@
 <div class="floatingPanel">
     <h3>Current Configuration</h3>
 
+    <div id="warningMessage"></div>
+
     <div>
         <b>Code:</b>
         <span
@@ -22,6 +24,19 @@
     <hr>
 
     <h3>Structure Outputs</h3>
+    </p> 
+    <div id="layerPreviewContainer">
+        <svg
+            id="layerPreview"
+            width="200"
+            height="200"
+        >
+        </svg>
+    </div>
+
+    <div class="panelDescription">
+    Relative layering of your habitat (not to scale).
+    </div>
 
     <div class="panelOutput">
         <b>Surface Area at Sea Level:</b>
@@ -47,7 +62,15 @@
         MPa
     </div>
 
-    <div id="warningMessage"></div>
+    <hr>
+
+    <h3>Parametric Outputs</h3>
+
+    <div class="panelOutput">
+    <b>Maximum Water Depth Visibility:</b>
+    <span id="visibilityDisplay"></span>
+    m
+    </div>
 
     <hr>
 
@@ -118,16 +141,6 @@
     <div id="lengthLabel"></div>
 </div>
 <p>
-    This figure is a way to visualize the relative layering of your habitat. It is not to scale.
-</p> 
-<div id="layerPreviewContainer">
-    <svg
-        id="layerPreview"
-        width="400"
-        height="400"
-    >
-    </svg>
-</div>
 
 <h3>Habitat Wall Thickness</h3>
 <p>Adjust the thickness of your habitat's walls.<br>
@@ -185,13 +198,21 @@
     <span id="elevationRPCost"></span>
 </div>
 
+<h3>Habitat End Caps</h3>
+<p>
+    Adjust the type of end caps lining the ends of your cylindrical habitat.
+    <ul>
+        <li>Cost is dependent on both end cap type and habitat radius.</li>
+    </ul>
+</p>
+
 <h3>Habitat Stability</h3>
 <p>
     Return resources in exchange for a chance of catastrophic structural failure.
     <ul>
         <li>Habitats that end this phase with 100% Habitat Stability are guaranteed to survive.</li>
+        <li>Habitats that end this phase with &lt;95% Habitat Stability will have their survival determined by probabilistic means.</li>
         <li>Habitats that end this phase with 0% Habitat Stability will automatically be destroyed.</li>
-        <li>Habitats that end this phase with 95% Habitat Stability or less will have their survival determined by probabilistic means.</li>
     </ul>
 </p>
 
@@ -221,11 +242,48 @@
     <span id="waterBalanceRPCost"></span>
 </div>
 
-<h3>Geothermal Terraforming</h3>
+<h3>Water Turbidity</h3>
+<p>
+    Improve the maximum clarity of water to increase the maximum penetrative depth of sunlight and underwater visibility. Water bodies can be less clear than the value chosen if desired. Turbidity coefficients correspond with the following scenarios:
+    <ul>
+        <li><b>10</b> — muddy water</li>
+        <li><b>2</b> — murky water</li>
+        <li><b>0.5</b> — turbid lake</li>
+        <li><b>0.1</b> — coastal ocean</li>
+        <li><b>0.05</b> — clear tropical ocean</li>
+        <li><b>0.02</b> — very clear ocean</li>
+    </ul>
+</p>
+<div class="module">
+    <label>Turbidity Attenuation Coefficient</label>
+    <input id="turbiditySlider" type="range">
+    <span id="turbidityDisplay"></span>
+    <span id="turbidityRPCost"></span>
+</div>
+
+<h3>Minimum Freshwater Elevation</h3>
+10 default, 5, 2, 1, 0 (all freshwater)
+<h3>Tidal Terraforming</h3>
+0 default, 1, 3, 6, 12
 
 <h3>Hydrological Terraforming</h3>
 
 <h3>Subterranean Terraforming</h3>
+
+<div class="optionmodule">
+    <div id="caveOptions"></div>
+    <span
+        id="caveRPCost"
+        class="rpCost"
+    ></span>
+</div>
+
+<div
+    id="caveDescription"
+    class="moduleDescription"
+></div>
+
+<h3>Geothermal Terraforming</h3>
 
 <h3>Maximum Substrate Fertility</h3>
 
@@ -235,17 +293,144 @@
 
 <hr>
 
-<h2>Water Modules</h2>
+<h2>Lighting Modules</h2>
 
-<h3>Water Turbidity</h3>
+<h3>Day Length</h3>
 
-<h3>Water Heating/Cooling</h3>
+<h3>Maximum Photosynthetically Active Radiation</h3>
+<p>
+    Increase or decrease the highest amount of photosynthetically active radiation (PAR) available in the habitat.
+</p>
+<div class="module">
+    <label>Photosynthetically Active Radiation</label>
+    <input id="lightSlider" type="range">
+    <span id="lightDisplay"></span>
+    <span id="lightRPCost"></span>
+</div>
 
-<h3>Minimum Salinity</h3>
-
-<h3>Tides</h3>
+<div
+    id="lightDescription"
+    class="moduleDescription"
+></div>
 
 <hr>
+
+<h2>Climate Modules</h2>
+
+<h3>Average Temperature</h3>
+
+<h3>Diurnal Temperature Variation</h3>
+
+<h3>Seasonal Temperature Variation</h3>
+
+<h3>Annual Rainfall Amount</h3>
+
+<h3>Rainfall Frequency</h3>
+Days/year
+
+<h3>Rainfall Seasonality</h3>
+Winter peak, All year, summer peak
+
+<h3>Relative Moisture</h3>
+Low, medium, high -- tied to rainfall seasonality
+
+<h3>Seasonal Inversion</h3>
+
+<hr>
+
+<h2>Ecosystem Maintenance Modules</h2>
+
+<h3>Lignocellulose Decomposer Unit</h3>
+
+<h3>Nitrogen Bioavailability Upregulator</h3>
+
+<h3>Organic Matter Recycler</h3>
+
+<h3>Pollination Drone</h3>
+
+<h3>Propagule Distribution Drone</h3>
+
+<h3>Rhizosphere Enhancement Unit</h3>
+
+<hr>
+
+<h2>Biotic Intervention Modules</h2>
+
+<h3>Aquatic Detritivore Species Pack</h3>
+
+<h3>Benthic Macroalgae Species Pack</h3>
+
+<h3>Bioturbation Species Pack</h3>
+
+<h3>Decomposer Species Pack</h3>
+
+<h2>Ecological Intervention Modules</h2>
+
+<h3>Phytoplankton Species Pack</h3>
+
+<h3>Pollinator Species Pack</h3>
+
+<h3>Soil Symbiont Species Pack</h3>
+
+<h3>Terrestrial Detritivore Species Pack</h3>
+
+<h3>Zooplankton Species Pack</h3>
+
+<hr>
+
+<h2>Species Modules</h2>
+
+<h3>Basic Specimen Retrieval</h3>
+4
+
+<h3>Plant Specimen Retrieval</h3>
+10
+
+<h3>Invertebrate Specimen Retrieval</h3>
+12
+
+<h3>Vertebrate Specimen Retrieval</h3>
+25
+
+<h3>Biotic Transfer Capsule</h3>
+-10
+
+<h3>Biotic Transfer Dock</h3>
+Need
+-10
+
+<h3>Cold Storage Plant</h3>
+Cost is half the tier, rounded down
+
+<h3>Cold Storage Invertebrate</h3>
+Cost is half the tier, rounded down
+
+<h3>Cold Storage Vertebrate</h3>
+Cost is half the tier, rounded down
+
+<hr>
+
+<h2>Invasive Species & Disease Modules</h2>
+
+<h3>Invasive Species Removal</h3>
+Slider, 1-3
+
+<h3>Invasive Species Integration</h3>
+Slider, 1-3
+
+<h3>Invasive Species Integration</h3>
+
+<hr>
+
+<h2>Genetics Modules</h2>
+
+<h3>Trophic Energy Enhancement</h3>
+
+<hr>
+
+<h2>Miscellaneous Modules</h2>
+
+<h3>Sophont Survival</h3>
 
 <script src="classes.js"></script>
 <script src="constants.js"></script>

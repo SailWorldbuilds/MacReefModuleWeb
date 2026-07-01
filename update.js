@@ -1,8 +1,10 @@
 function updateEverything(changedModule = null) {
     constrainStructure(changedModule);
     constrainStress(changedModule);
+    updateModuleRequirements();
     updateArea();
     updateHabitatPreview();
+    updateLayerPreview();
     updateHoopStress();
     updateWaterPressure();
     updateSubstratePressure();
@@ -13,7 +15,7 @@ function updateEverything(changedModule = null) {
     updateTrueArea();
     updateSeaLevelGravity();
     updateMountainGravity();
-    updateLayerPreview();
+    updateVisibility();
     updateRP();
     updateConfigurationCode();
 }

@@ -27,7 +27,7 @@
 }
 
 body {
-    line-height: 1.5;
+    line-height: 1.4;
 }
 
 .content {
@@ -50,6 +50,7 @@ h2 {text-align: center;
 }
 
 h3 {font-size: 1.0rem;
+    margin-bottom: 4px;
 }
 
 body {
@@ -81,6 +82,7 @@ input {
 #warningMessage {
     font-size: 0.8em;
     color: red;
+    font-style: italic;
     font-weight: bold;
 }
 
@@ -104,6 +106,23 @@ input {
     gap: 10px;
 }
 
+.optionmodule {
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+}
+
+.moduleDescription {
+
+    margin: 6px 0 16px 0;
+    padding-left: 20px;
+    font-size: 0.9em;
+    color: #555;
+
+}
+
 .module input[type="range"] {
     flex: 1;
 }
@@ -113,14 +132,11 @@ input {
     white-space: nowrap;
 }
 
-.module .rpCost {
-    margin-left: auto;
-    text-align: right;
-}
+.rpCost {
 
-.result .rpCost {
     margin-left: auto;
     text-align: right;
+
 }
 
 .result {
@@ -167,5 +183,15 @@ input {
 
     border: 1px solid #ccc;
     background: #fafafa;
+
+}
+
+.panelDescription {
+    text-align: center;
+    font-size: 0.75em;
+    font-style: italic;
+    color: #666;
+    margin-top: -5px;
+    margin-bottom: 10px;
 
 }

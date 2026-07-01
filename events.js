@@ -3,6 +3,10 @@ function connectModules() {
 
     for (const module of modules) {
 
+        if (module.type !== "slider") {
+            continue;
+        }
+
         module.slider.addEventListener(
             "input",
             () => {
@@ -13,7 +17,7 @@ function connectModules() {
                     );
 
                 module.setValue(
-                    module.values[index]
+                    module.states[index].value
                 );
 
             }
